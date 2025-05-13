@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Canirando - L'aventure à quatre pattes</title>
+    <meta name="description" content="Découvrez les meilleures randonnées à faire avec votre chien en montagne, à la plage, en campagne et à l'océan." />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="shortcut icon" href="images/logo bulma.jpg">
+    <style>
+        /* Palette de couleurs (inspirée de notre discussion) */
+        :root {
+            --vert-foret-profond: #225733;
+            --terre-de-sienne: #A0522D;
+            --orange-vibrant: #FF8C00;
+            --blanc-casse: #F8F0E3;
+            --gris-anthracite: #36454F;
+            --gris-clair: #D3D3D3;
+            --bleu-ciel-doux: #87CEEB;
+        }
+
+        body {
+            font-family: sans-serif;
+            background-color: var(--blanc-casse);
+            color: var(--gris-anthracite);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--vert-foret-profond);
+            color: var(--blanc-casse);
+            padding: 1em 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo img {
+            height: 70px;
+            width: 80px;
+            border-radius: 10px; /* Adouci les angles, plus moderne que 90px */
+        }
+
+        .nom-du-site h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+
+        .icon {
+            display: flex;
+            gap: 15px;
+        }
+
+        .icon img {
+            height: 30px;
+            width: auto;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .icon img:hover {
+            opacity: 1;
+        }
+
+        .main-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            background-color: rgba(0, 0, 0, 0.1); /* Léger fond pour la nav */
+        }
+
+        .main-nav li {
+            margin: 0 15px;
+        }
+
+        .main-nav a {
+            display: block;
+            color: var(--blanc-casse);
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .main-nav a:hover {
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+
+        .hero {
+            background-image: url('images/hero-canirando.jpg'); /* Ajoutez une image d'arrière-plan attrayante */
+            background-size: cover;
+            background-position: center;
+            color: var(--blanc-casse);
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+        }
+
+        .search-bar {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .search-bar input[type="search"] {
+            flex-grow: 1;
+            padding: 12px 15px;
+            border: none;
+            font-size: 1em;
+        }
+
+        .search-bar button {
+            background-color: var(--orange-vibrant);
+            color: var(--blanc-casse);
+            border: none;
+            padding: 12px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .search-bar button:hover {
+            background-color: darken(var(--orange-vibrant), 10%);
+        }
+
+        .container-univers {
+            padding: 40px 20px;
+            background-color: var(--blanc-casse);
+            text-align: center;
+        }
+
+        .univers h2 {
+            font-size: 2.5em;
+            color: var(--vert-foret-profond);
+            margin-bottom: 30px;
+        }
+
+        .univers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .univers-item {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .univers-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .univers-item img {
+            height: 80px;
+            margin-bottom: 15px;
+        }
+
+        .univers-item h3 {
+            color: var(--terre-de-sienne);
+            margin-bottom: 10px;
+        }
+
+        .univers-item p {
+            font-size: 0.95em;
+            color: var(--gris-anthracite);
+        }
+
+        .featured-randonnees {
+            padding: 40px 20px;
+            background-color: var(--gris-clair);
+            text-align: center;
+        }
+
+        .featured-randonnees h2 {
+            font-size: 2.5em;
+            color: var(--vert-foret-profond);
+            margin-bottom: 30px;
+        }
+
+        .randonnees-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .randonnees {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .randonnees:hover {
+            transform: translateY(-5px);
+        }
+
+        .randonnees a {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .randonnees .picture {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            height: 200px; /* Hauteur fixe pour les images */
+        }
+
+        .randonnees .picture img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Remplir l'espace sans déformer */
+        }
+
+        .randonnees .titre-rando {
+            padding: 15px;
+            color: var(--terre-de-sienne);
+            font-weight: bold;
+        }
+
+        .randonnees .lieu-rando {
+            padding: 0 15px;
+            font-size: 0.9em;
+            color: var(--gris-anthracite);
+        }
+
+        .randonnees .info-rando {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            font-size: 0.85em;
+            color: var(--gris-anthracite);
+        }
+
+        .randonnees .info-rando .maps-info a img#maps {
+            height: 20px;
+            width: auto;
+        }
+
+        .a-propos {
+            padding: 60px 20px;
+            background-color: var(--blanc-casse);
+            text-align: center;
+            max-width: 800px;
+            margin: 40px auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .a-propos h2 {
+            font-size: 2.5em;
+            color: var(--vert-foret-profond);
+            margin-bottom: 20px;
+        }
+
+        .a-propos p {
+            line-height: 1.8;
+        }
+
+        footer {
+            background-color: var(--gris-anthracite);
+            color: var(--blanc-casse);
+            text-align: center;
+            padding: 20px 0;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="header">
+            <div class="logo">
+                <img src="images/logo bulma.jpg" alt="Joli chien avec une laisse dans la gueule">
+            </div>
+            <div class="nom-du-site">
+                <h1>CANIRANDO</h1>
+            </div>
+            <div class="icon">
+                <div class="icon-profil">
+                    <a href="compte.html"><img src="images/iconprofil.png" alt="Icon de mon profil"></a>
+                </div>
+                <div class="icon-groupe">
+                    <a href="groupe.html"><img src="images/groupe.png" alt="Icon de profil pour le groupe"></a>
+                </div>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="accueil">Accueil</a></li>
+                <li><a href="#destinations">Nos Destinations</a></li>
+                <li><a href="#apropos">À Propos</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Explorez le monde avec votre fidèle compagnon</h1>
+            <p>Trouvez et partagez les meilleures randonnées pour vous et votre chien.</p>
+            <div class="search-bar">
+                <input type="search" placeholder="Rechercher une rando, un lieu...">
+                <button type="submit">Go !</button>
+            </div>
+        </div>
+    </section>
+
+    <div class="container-univers" id="destinations">
+        <section class="univers">
+            <h2>Choisissez votre prochaine aventure</h2>
+            <div class="univers-grid">
+                <a href="rando-montagne.html" class="univers-item montagne">
+                    <img src="images/montagne-icone.png" alt="Icône Montagne">
+                    <h3>Montagne</h3>
+                    <p>Des sommets à conquérir ensemble.</p>
+                </a>
+                <a href="rando-plage.html" class="univers-item plage">
+                    <img src="images/plage-icone.png" alt="Icône Plage">
+                    <h3>Plage</h3>
+                    <p>Balades iodées et jeux dans le sable.</p>
+                </a>
+                <a href="rando-campagne.html" class="univers-item campagne">
+                    <img src="images/campagne-icone.png" alt="Icône Campagne">
+                    <h3>Campagne</h3>
+                    <p>Chemins bucoliques et découvertes rurales.</p>
+                </a>
+                <a href="rando-ocean.html" class="univers-item ocean">
+                    <img src="images/ocean-icone.png" alt="Icône Océan">
+                    <h3>Océan</h3>
+                    <p>Sentiers côtiers et paysages marins.</p>
+                </a>
+            </div>
+        </section>
+    </div>
+
+    <section class="featured-randonnees">
+        <h2>Nos randonnées populaires</h2>
+        <div class="randonnees-grid">
+            <section class="randonnees">
+                <a href="page-rando.html">
+                    <div class="rando">
+                        <div class="picture">
+                            <img src="images/rando.jpg" alt="Rando à la campagne">
+                        </div>
+                        <div class="titre-rando">
+                            <h2>La casse patte</h2>
+                        </div>
+                        <div class="lieu-rando">
+                            <p>Pyrénées-Atlantiques, Ibardin</p>
+                        </div>
+                        <div class="info-rando">
+                            <p>Facile - 24km - 1h</p>
+                            <div class="maps-info">
+                                <a href="maps.html"><img id="maps" src="images/carte .png" alt="Icon d'une carte"></a>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </section>
+            <section class="randonnees">
+                <a href="page-rando.html">
+                    <div class="rando">
+                        <div class="picture">
+                            <img src="images/volcan.jpg" alt="Rando en montagne">
+                        </div>
+                        <div class="titre-rando">
+                            <h2>La feu au cul</h2>
+                        </div>
+                        <div class="lieu-rando">
+                            <p>Auvergne, Puy-de-Dôme</p>
+                        </div>
+                        <div class="info-rando">
+                            <p>Moyen - 15km - 3h</p>
+                            <a href="maps.html"><img id="maps" src="images/carte .png" alt="Icon d'une carte"></a>
+                        </div>
+                    </div>
+                </a>
+            </section>
+            <section class="randonnees">
+                <a href="page-rando.html">
+                    <div class="rando">
+                        <div class="picture">
+                            <img src="images/plage.jpg" alt="Rando à la plage">
+                        </div>
+                        <div class="titre-rando">
+                            <h2>La tranquillou</h2>
+                        </div>
+                        <div class="lieu-rando">
+                            <p>Bretagne, Finistère</p>
+                        </div>
+                        <div class="info-rando">
+                            <p>Facile - 8km - 2h</p>
+                            <a href="maps.html"><img id="maps" src="images/carte .png" alt="Icon d'une carte"></a>
+                        </div>
+                    </div>
+                </a>
+            </section>
+        </div>
+    </section>
+
+    <section id="apropos" class="a-propos">
+        <h2>À propos de Canirando</h2>
+        <p>Canirando est une communauté passionnée par la randonnée et nos amis à quatre pattes. Notre objectif est de faciliter la découverte deMagnifique \! Cette structure HTML pour votre page d'accueil est un excellent point de départ. Elle est bien organisée et sémantique. Voici quelques suggestions pour l'améliorer encore, en gardant à l'esprit l'intégration de la palette de couleurs et l'expérience utilisateur :
+
+**Suggestions d'amélioration du HTML :**
+
+1.  **Navigation principale plus claire :** La navigation dans l'en-tête (`<nav>`) est une bonne idée. Assurez-vous que les liens correspondent aux sections importantes de votre site.
+
+2.  **Section "Hero" :** Une section "hero" en haut de la page est courante pour
