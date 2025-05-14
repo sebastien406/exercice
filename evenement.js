@@ -91,10 +91,68 @@ function Paragraphe() {
   // exercice 8
 console.log(document.querySelectorAll("h2"));
   
-let title = ["h2"];
-let copie = [];
+let title = [document.querySelectorAll("h2")];
+let copie = [title.innerHTML];
 
 title.forEach(function (item) {
   copie.push(item);
 });
 console.table(copie);
+ 
+
+
+// exercice smootkies
+
+// Liste fixe de fruits
+	const fruits = ["fraise", "banane", "kiwi magique", "pomme", "ananas", "framboise", "mangue"];
+  let compteur = 0; // Compteur initialisé à zéro
+	let indexDepart = 0; // Point de départ dans le tableau
+
+
+  const preparerBtn = document.getElementById("btnSmoothie");
+  const btnBoire = document.getElementById("btnBoire");
+
+  preparerBtn.addEventListener("click" , preparerSmoothie);
+  btnBoire.addEventListener("click" , boireSmoothie);
+	// Fonction de préparation
+	function preparerSmoothie() {
+    const resultat = document.getElementById("resultat");
+    resultat.innerHTML = "";
+    let smoothie = [];
+
+    for (let counter = 0; counter < 3; counter ++){
+      // let index = indexDepart + counter;
+
+      // if (index >= fruits.length) {
+      //   index = index - fruits.length; 
+      // }
+      let index = (indexDepart + counter) % fruits.length;
+
+      smoothie.push(fruits[index]);
+    }
+
+    
+    smoothie.forEach(function(fruit)  {
+      let p = document.createElement("p");
+      console.log(fruit);
+      p.innerText = fruit;
+      resultat.appendChild(p);
+    });
+    indexDepart++;
+    let compteurhtml = document.getElementById("compteur");
+    compteurhtml.innerText = "Preparation: " +indexDepart;
+
+    if (smoothie.includes("kiwi magique")){
+      resultat.style.backgroundColor = "green";
+    } else {
+      resultat.style.backgroundColor = "initial";
+    }
+	}
+
+	// Fonction de reset
+	function boireSmoothie() {
+		// Ton code ici
+  console.log("Boire smoothie");
+ const resultat = document.getElementById("resultat");
+ resultat.innerHTML = "";
+	}
