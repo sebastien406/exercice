@@ -3,7 +3,7 @@
             border: 1px solid #000000;
             border-radius: 15px;
             overflow: hidden;
-            width: 500px;
+            
         }
 
         .accordion__title {
@@ -24,6 +24,7 @@
 
         .accordion__answer-bloc {
             overflow: hidden;
+            height: 0;
             transition: height 0.3s ease;
         }
 

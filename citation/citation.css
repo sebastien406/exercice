@@ -1,0 +1,15 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  
+}
+
+
+#Citation{
+    border: solid 2px;
+    height: 100px;
+    width: 50%;
+    text-align: center;
+    align-items: center;
+}
